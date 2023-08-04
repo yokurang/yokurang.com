@@ -16,7 +16,7 @@ const Skills = ({ data }: { data: TSkill[] }) => {
       {Object.values(SkillCategory).map((category) => (
         <div key={category} className="mb-8 p-4 md:p-5 rounded-lg shadow-md bg-white">
           <h3 className={`font-bold text-lg md:text-xl ${categoryColor[category]}`}>{category}</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
             {categories[category]?.map((skill, index) => (
               <div key={index} className="py-2 px-4 bg-white rounded-md flex items-center gap-2 mb-2 border border-gray-200">
                 <span className="font-bold text-sm md:text-base">{skill.name}</span>
