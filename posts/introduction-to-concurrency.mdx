@@ -1,0 +1,57 @@
+---
+title: Introduction to Concurrency
+date: 2023-08-19
+categories:
+  - Concurrency
+  - Theory
+description: Some basic definitions in concurrent programming 
+draft: false
+---
+
+<Paragraph>
+When I first read about this topic I found it difficult to really wrap my head around the definition of concurrency and parallelism.
+</Paragraph>
+
+<SectionHeading>
+Understanding Concurrency & Parallelism
+</SectionHeading>
+
+<Definition term="Concurrency">
+Concurrency is best explained as when a program is able to continue to function while another program is in action.
+</Definition>
+
+<Definition term="Parallelism">
+Parallelism is when multiple programs are executed at the same time.
+</Definition>
+
+<ThoughtBubble>
+The reason why concurrency is important is because advancements in the single processor to make them faster and more efficient have peaked. This has led to the rise of multiprocessor systems.
+</ThoughtBubble>
+
+<Paragraph>
+Consequently, multiprocessor systems, or processors with multiple cores, have become the new standard. They harness the ability for multiple CPUs to function and communicate with each other via hardware caches. However, concurrent programming is inherently difficult as computer systems are by nature asynchronous due to unpredictable factors like interrupts and cache misses.
+</Paragraph>
+
+<Definition term="Multi-core Systems">
+Multiprocessor computers that communicate via a shared memory.
+</Definition>
+
+<Highlight>
+The most important thing to understand about concurrent programs is that specifying and verifying what a program actually does is much more difficult than sequential programming.
+</Highlight>
+
+<Paragraph>
+In sequential programming, we're mostly concerned about the safety property, meaning that something bad never happens. For concurrent programs, ensuring that something bad doesn't happen becomes a challenge due to the various ways concurrent threads may interleave. Additionally, concurrent programs introduce the concept of the liveness property, which guarantees that something good will eventually happen. In essence, there's a vast number of ways concurrent threads might execute, and it's hard to ensure whether a program will function correctly.
+</Paragraph>
+
+<ThoughtBubble>
+Concurrency introduces new challenges, but it also offers improved performance on modern multi-core processors.
+</ThoughtBubble>
+
+<Paragraph>
+Another distinction between concurrent and sequential programs is efficiency. Concurrent programs interact closely with the computer architecture. Since threads might execute in numerous ways, it's imperative to write efficient programs that guarantee performance under various possibilities of thread execution, optimizing the computer architecture's potential.
+</Paragraph>
+
+```java
+// Example code related to concurrency could be inserted here to illustrate a concept.
+```
