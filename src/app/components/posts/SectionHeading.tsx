@@ -2,15 +2,16 @@
 import { ReactNode } from "react";
 
 interface SectionHeadingProps {
-  heading: string;
   children: ReactNode;
 }
 
-const SectionHeading: React.FC<SectionHeadingProps> = ({ heading, children }) => {
+const SectionHeading: React.FC<SectionHeadingProps> = ({ children }) => {
   return (
-    <div className="my-6">
-      <h2 className="text-2xl font-bold mb-2">{heading}</h2>
-      <p className="text-lg leading-relaxed">{children}</p>
+    <div className="my-4">
+      <h2 className="text-2xl font-semibold text-gray-700 mb-1 inline-block relative">
+        {children}
+        <hr className="border-t border-gray-300 absolute bottom-0 left-0 w-full" />
+      </h2>
     </div>
   );
 }
