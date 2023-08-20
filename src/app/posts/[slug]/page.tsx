@@ -12,7 +12,7 @@ import Definition from '@/app/components/posts/Definition';
 import ThoughtBubble from '@/app/components/posts/ThoughtBubble';
 import Pre from '@/app/components/posts/Pre';
 
-export const MDXComponents = {
+const MDXComponents = {
   Paragraph,
   SectionHeading,
   Highlight,
