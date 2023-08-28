@@ -14,6 +14,7 @@ import Pre from '@/app/components/posts/Pre';
 import References from '@/app/components/posts/References';
 import Summary from '@/app/components/posts/Summary';
 import SubHeading from '@/app/components/SubHeading';
+import Problem from '@/app/components/posts/Problem';
 
 const MDXComponents = {
   Paragraph,
@@ -24,6 +25,7 @@ const MDXComponents = {
   ThoughtBubble,
   References,
   Summary,
+  Problem,
 
   a: ({ ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
     <a
