@@ -6,20 +6,24 @@ import BackToHomeButton from '@/app/components/BackToHomeButton';
 
 // MDX Components 
 import Paragraph from '@/app/components/posts/Paragraph';
-import SectionHeading from '@/app/components/posts/SectionHeading';
+import Heading from '@/app/components/posts/Heading';
 import Highlight from '@/app/components/posts/Highlight';
 import Definition from '@/app/components/posts/Definition';
 import ThoughtBubble from '@/app/components/posts/ThoughtBubble';
 import Pre from '@/app/components/posts/Pre';
 import References from '@/app/components/posts/References';
+import Summary from '@/app/components/posts/Summary';
+import SubHeading from '@/app/components/SubHeading';
 
 const MDXComponents = {
   Paragraph,
-  SectionHeading,
+  Heading,
+  SubHeading,
   Highlight,
   Definition,
   ThoughtBubble,
   References,
+  Summary,
 
   a: ({ ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
     <a

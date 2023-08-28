@@ -1,11 +1,11 @@
 // components/SectionHeading.tsx
 import { ReactNode } from "react";
 
-interface SectionHeadingProps {
+interface HeadingProps {
   children: ReactNode;
 }
 
-const SectionHeading: React.FC<SectionHeadingProps> = ({ children }) => {
+const Heading: React.FC<HeadingProps> = ({ children }) => {
   return (
     <div className="my-4">
       <h2 className="text-2xl font-semibold text-gray-700 mb-1 inline-block relative">
@@ -16,4 +16,4 @@ const SectionHeading: React.FC<SectionHeadingProps> = ({ children }) => {
   );
 }
 
-export default SectionHeading;
+export default Heading;
