@@ -33,7 +33,11 @@ const courses: TCourse[] = [
     institution: 'Yale-NUS College',
   },
   {
-    course: 'Econometrics',
+    course: 'Intermediate Econometrics',
+    institution: 'Yale-NUS College',
+  },
+  {
+    course: 'Intermediate Microeconomics',
     institution: 'Yale-NUS College',
   }
 ];
