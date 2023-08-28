@@ -11,6 +11,7 @@ import Highlight from '@/app/components/posts/Highlight';
 import Definition from '@/app/components/posts/Definition';
 import ThoughtBubble from '@/app/components/posts/ThoughtBubble';
 import Pre from '@/app/components/posts/Pre';
+import References from '@/app/components/posts/References';
 
 const MDXComponents = {
   Paragraph,
@@ -18,6 +19,7 @@ const MDXComponents = {
   Highlight,
   Definition,
   ThoughtBubble,
+  References,
 
   a: ({ ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
     <a
