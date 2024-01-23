@@ -1,0 +1,73 @@
+---
+title: Introduction to Concurrency
+date: 2023-08-19
+categories:
+  - Concurrency
+  - Theory
+description: My first dive into concurrency. 
+draft: false
+---
+<Heading>
+Introduction
+</Heading>
+
+<Paragraph>
+This semester, I am taking parallel, concurrent, and distributed programming in college. It is currently Week 3 of the semester, and the course has been challenging.
+However, I want to take the time and record what I have learned in this series of blog posts on concurrency. 
+</Paragraph>
+
+<Heading>
+Thinking about Concurrency
+</Heading>
+
+<Paragraph>
+Some time ago, in my operating systems class, I was asked the question what is the difference between concurrency and parallelism. At first, I really thought hard and couldn't really come up with a good answer.
+But after reading the book "The Art of Multiprocessor Programming," I believe a good answer to that is that parallelism is when multiple programs are run simultaneously in a multiprocessor system, and concurrency is the art of structuring your program such that different components of the program can be executed while another component of the program is in use.
+</Paragraph>
+
+<Definition term="Parallelism vs Concurrency">
+Parallelism is when multiple programs are run simultaneously in a multiprocessor system, and concurrency is the art of structuring your program such that different components of the program can be executed while another component of the program is in use.
+</Definition>
+
+<Paragraph>
+With that out of the way, I believe a good start to learning concurrency is building a theoretical model of concurrent computations. For me, I like to think of concurrent programming
+as when there are individual concurrent threads that share a resource or object. This is possible because the concurrent threads exist and perform computations in a shared memory.
+</Paragraph>
+
+<Heading> 
+Properties of Concurrent Programs
+</Heading>
+
+<Paragraph>
+With our model of concurrent computation, I think the next important thing to discuss is what properties are necessary for a program to be considered concurrent. This is important as it can help us better understand the nature of concurrency.
+</Paragraph>
+
+<Definition term="Safety Property">
+The safety property is a property concerned about ensuring that a program never does something it is not supposed to do. Another way to put it, it ensures that something "bad" never happens.
+</Definition>
+
+<Paragraph>
+When reading the Art of Multiprocessor Programming book, they mentioned two important properties: correctness and verification.
+Correctness, otherwise known as the safety property, is the property that the given concurrent program will never do something it is not supposed to do. For example, in a non-computer example, a traffic light will never display green in all directions.
+This seems like an obviously important property, but one that is difficult to prove for concurrent programs since there are a vast number of permutations in which the concurrent threads may execute an operation on the shared object. In simpler terms, our concurrent threads can interleave.
+</Paragraph>
+
+<Definition term="Liveness Property">
+The liveness property is a property concerned about ensuring that the program will eventually do something. In other words, something "good" eventually happens.
+</Definition>
+
+<Paragraph>
+The property of verification, also known as the liveness property, is concerned about ensuring that an objective of the concurrent program is eventually achieved. Notice that the word "eventually" is used here, which is meant to convey 
+that while a concurrent program may have not achieved its desired objective now, it will some time in the future. A non-computer example for this might be that a traffic light will eventually turn green. This might seem obvious, but under the hood, it is actually somewhat more complicated.
+Consider the possibility of a traffic light that is currently red switching back and forth to orange. In other words, the traffic light, from when we last measured, is always switching between red and orange. However, since the traffic light is also green, one day in the future, even if it might not seem like it now, it will eventually turn green. In the same way, ensuring liveness in a concurrent programming
+is also rather complicated because of the different number of possible states our program can take.
+</Paragraph>
+
+<Highlight>
+One intuitive way of thinking about safety and liveness and differentiating the two is to think about testing. For safety properties, it is possible to build a test with finite execution to determine whether the safety property holds. In other words, we can design a test with finite execution and which terminates to invalidate a safety property. On the other hand, the same is not true for liveness properties. It is not possible to construct a terminal test with finite execution to determine the validity of a liveness property. This is because a liveness property is a statement that something "good" will eventually happen, but it may or may not be possible to tell when that something "good" will happen. Our test will end up waiting indefinitely until said "good" thing happens, or not.
+</Highlight>
+
+<References>
+  <div>The Art of Multiprocessor Programming.</div>
+  <div> YSC4231 Parallel, Concurrent, and Distributed Programming by Professor Ilya Sergey </div>
+</References> 
