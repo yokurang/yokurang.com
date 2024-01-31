@@ -12,9 +12,9 @@ const posts = allPosts.filter(item => !item.draft).sort((a, b) => {
 
 export default function Home() {
   return (
-    <div className="bg-white mx-auto max-w-2xl py-16 px-4">
+    <div className="bg-white px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 min-h-screen">
       <NavigationBar />
-      <main className="flex-grow py-16 px-4">
+      <main className="mx-auto max-w-5xl p-8">
         <header className="text-center pt-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Welcome!</h1>
           <p className="text-lg text-gray-600 mb-2">I write blogs here to share my insights and learnings.</p>

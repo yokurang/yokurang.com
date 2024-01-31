@@ -10,7 +10,7 @@ const posts = allPosts.filter(item => !item.draft).sort((a, b) => {
 
 const PostPage = () => {
   return (
-    <div className="mx-auto max-w-6xl py-16 px-4 bg-white min-h-screen">
+    <div className="bg-white mx-auto max-w-full py-16 px-4 sm:px-6 lg:px-12 xl:px-16 min-h-screen">
       <NavigationBar />
       <header className="text-center pt-12">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">All Posts</h1>
