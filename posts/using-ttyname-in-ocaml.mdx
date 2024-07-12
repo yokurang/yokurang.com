@@ -27,7 +27,7 @@ To implement pager functionality, we needed to ensure that our application could
 The <code>ttyname</code> function retrieves the terminal name associated with a file descriptor, which is useful for ensuring proper terminal setup. We utilize this function to manage terminal I/O appropriately when <code>Diffcessible</code> is running in different modes.
 </Paragraph>
 
-<CodeBlock>
+<Pre>
 open Diffcessible
 open Cmdliner
 open ExtUnix.Specific
@@ -77,7 +77,7 @@ let main file_path =
 ...
 
 let () = exit (Cmd.eval cmd)
-</CodeBlock>
+</Pre>
 
 <Heading>
 Handling Edge Cases
