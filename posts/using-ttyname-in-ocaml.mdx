@@ -1,0 +1,109 @@
+---
+title: Using `ttyname` in OCaml
+date: 2024-07-12
+categories:
+  - OCaml
+  - Programming
+description: Implementing pager functionality using `ttyname` in OCaml.
+draft: false
+---
+<Heading>
+Introduction
+</Heading>
+
+<Paragraph>
+In the last few weeks, I have been helping build an accessible diff viewer terminal application called <code>Diffcessible</code>. One of the features we wanted to implement was pager functionality, which involved using `ttyname` in OCaml. This post will walk through the implementation details, considerations, and edge cases encountered while integrating this functionality.
+</Paragraph>
+
+<Heading>
+Using `ttyname` for Pager Functionality
+</Heading>
+
+<Paragraph>
+To implement pager functionality, we needed to ensure that our application could handle input from both a file and standard input (stdin). When input is piped as a string, or when there is no input, our program should handle these cases gracefully to avoid unexpected behavior.
+</Paragraph>
+
+<Paragraph>
+The <code>ttyname</code> function retrieves the terminal name associated with a file descriptor, which is useful for ensuring proper terminal setup. We utilize this function to manage terminal I/O appropriately when <code>Diffcessible</code> is running in different modes.
+</Paragraph>
+
+<CodeBlock>
+open Diffcessible
+open Cmdliner
+open ExtUnix.Specific
+
+let create_empty_diff_content () =
+  "diff --git a/Error b/Error\n--- a/Error\n+++ b/Error\n"
+
+let with_input_fd file_path f =
+  if not (Sys.file_exists file_path) then
+    failwith ("File not found: " ^ file_path);
+  In_channel.with_open_bin file_path f
+
+let with_setup_term f =
+  let is_tty = Unix.isatty Unix.stdin in
+  if is_tty then
+    let term =
+      Notty_unix.Term.create ~input:Unix.stdin ~output:Unix.stdout ()
+    in
+    Fun.protect
+      (fun () -> f term)
+      ~finally:(fun () -> Notty_unix.Term.release term)
+  else
+    let tty_path = ttyname Unix.stdout in
+    let tty_fd = Unix.openfile tty_path [ Unix.O_RDWR ] 0o600 in
+    let term = Notty_unix.Term.create ~input:tty_fd ~output:tty_fd () in
+    Fun.protect
+      (fun () -> f term)
+      ~finally:(fun () ->
+        Notty_unix.Term.release term;
+        Unix.close tty_fd)
+
+let read_input ic =
+  try In_channel.input_all ic with _ -> create_empty_diff_content ()
+
+let main file_path =
+  with_setup_term (fun term ->
+      let input_content =
+        match file_path with
+        | Some path -> with_input_fd path read_input
+        | None ->
+            if Unix.isatty Unix.stdin then create_empty_diff_content ()
+            else read_input In_channel.stdin
+      in
+      let patch = Patch.to_diffs input_content in
+      InteractiveViewer.start ~term patch)
+
+...
+
+let () = exit (Cmd.eval cmd)
+</CodeBlock>
+
+<Heading>
+Handling Edge Cases
+</Heading>
+
+<Paragraph>
+Some of the key considerations and edge cases we handled include:
+</Paragraph>
+
+<Definition term="Piped Input">
+When input is piped as a string, we need to read from stdin and ensure the content is processed correctly.
+</Definition>
+
+<Definition term="No Input">
+When there is no input, we create an empty diff content to avoid the terminal going rogue or crashing.
+</Definition>
+
+<Paragraph>
+By ensuring these cases are handled, we improve the robustness of our application and provide a smooth user experience regardless of how the input is provided.
+</Paragraph>
+
+<Highlight>
+Ensuring that our application handles terminal setup correctly using <code>ttyname</code> and properly manages input cases helps us build a reliable and accessible diff viewer.
+</Highlight>
+
+<References>
+  <div>OCaml Manual: Sys and Unix Modules</div>
+  <div>Cmdliner Documentation</div>
+</References>
